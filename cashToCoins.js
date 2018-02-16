@@ -1,0 +1,1 @@
+console.log("Hello, Cash to Coins.js!");
