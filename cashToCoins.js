@@ -12,35 +12,35 @@ const piggyBank = {};
 let userInput = dollarAmount;
 console.log("The user has: $", userInput);
 
-// creates a function to create a new object and adds it to "piggyBank" (doesn't work)
-function CoinCollection(quarters, dimes, nickles, pennies) {
-    this.quarters = quarters;
-    this.dimes = dimes;
-    this.nickles = nickles;
-    this.pennies = pennies;
-};
+// adds four properties to the empty "piggyBank" object and makes each of their values "0" to start
+piggyBank.quarters = 0;
+piggyBank.dimes = 0;
+piggyBank.nickles = 0;
+piggyBank.pennies = 0;
 
-piggyBank = new CoinCollection(0.25, 0.10, 0.05, 0.01);
+console.log("The piggy bank started out with:", piggyBank);
 
-minusQuarters = (userInput / piggyBank.coins.quarters);
-console.log(minusQuarters.toFixed(2));
+//Redfines the value of each key in the "piggyBank" object with the appropriate math performed on the "userInput"
+piggyBank.quarters = Math.floor(userInput / 0.25);
+let remainder = userInput % 0.25;
 
-minusDimes = (userInput / piggyBank.coins.dimes);
-console.log(minusDimes.toFixed(2));
+piggyBank.dimes = Math.floor(remainder / 0.10);
+remainder = remainder % 0.10;
 
-minusNickles = (userInput / piggyBank.coins.nickles);
-console.log(minusNickles.toFixed(2));
+piggyBank.nickles = Math.floor(remainder / 0.05);
+remainder = remainder % 0.05;
 
-minusPennies = (userInput / piggyBank.coins.pennies);
-console.log(minusPennies.toFixed(2));
+piggyBank.pennies = Math.floor(remainder / 0.01);
+remainder = remainder % 0.01;
 
+// Outputs "dollarAmount" and amount of coins to the DOM
 var output = document.getElementById("user-input");
 output.innerHTML = `If you have $${dollarAmount}, the simplest combination of change would be:`;
 
 var coinCount = document.getElementById("coin-count");
-coinCount.innerHTML += `<li>Quarters = ${minusQuarters}</li>`;
-coinCount.innerHTML += `<li>Dimes = ${minusDimes}</li>`;
-coinCount.innerHTML += `<li>Nickles = ${minusNickles}</li>`;
-coinCount.innerHTML += `<li>Pennies = ${minusPennies}</li>`;
+coinCount.innerHTML += `<li>Quarters = ${piggyBank.quarters}</li>`;
+coinCount.innerHTML += `<li>Dimes = ${piggyBank.dimes}</li>`;
+coinCount.innerHTML += `<li>Nickles = ${piggyBank.nickles}</li>`;
+coinCount.innerHTML += `<li>Pennies = ${piggyBank.pennies}</li>`;
 
-console.log(piggyBank);
+console.log("The piggy bank now holds:", piggyBank);
